@@ -5,10 +5,10 @@ import {
   ServiceContext,
   RecorderState,
 } from '@vtex/api'
-import { example } from './events/example'
+// import { example } from './events/example'
 import { createSendEvent } from './routes/notify'
 import { getCacheContext, setCacheContext } from './utils/cachedContext'
-
+import { updateLiveUsers } from './events/liveUsersUpdate'
 const TREE_SECONDS_MS = 3 * 1000
 const CONCURRENCY = 10
 
@@ -48,7 +48,7 @@ export default new Service<IOClients, State, ParamsContext>({
     },
   },
   events: {
-    example,
+    liveUsersUpdate: updateLiveUsers,
   },
   routes: {
     hcheck: (ctx: any) => {
